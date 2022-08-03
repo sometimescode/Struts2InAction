@@ -1,7 +1,5 @@
 package com.demo.chapterTwo;
 
-import com.opensymphony.xwork2.ActionSupport;
-
 /* 
  * Hello World Action for chapter one.  This Action expects to receive a 
  * name input from a form on Name.jsp.  The business logic of this action
@@ -9,7 +7,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * makes that custom message available for the result to which it forwards.  
  */
 
-public class HelloWorld extends ActionSupport {
+public class HelloWorld {
 	
 	/* Our defintion of the greeting text is just static for this
 	 * first example.  Later we will add internationalization features
