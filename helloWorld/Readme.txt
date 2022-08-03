@@ -8,6 +8,7 @@ a) CREATE BASE PROJECT
 >48
 groupid: com.demo
 artfactid: helloWorld (will be the name of generated WAR file)
+^ DOESN'T RUN. Had to modify pom.xml to use some parts of code found in generating a Maven Webapp Project through VSCODE to make it run.
 -
 b) TRANSFER FILES
 1) Extract SampleApplication
