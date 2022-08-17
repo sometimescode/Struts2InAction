@@ -1,5 +1,6 @@
 package com.demo.actions.chapterTwo;
 
+import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
 
 /* 
@@ -15,8 +16,8 @@ import org.apache.struts2.convention.annotation.Result;
  * the framework scans the classes for annotations.   
  */
 
-
-@Result(name="SUCCESS", location="/chapterTwo/HelloWorld.jsp")
+@Namespace("/chapterTwo")
+@Result(name="SUCCESS", location="HelloWorld.jsp")
 
 public class AnnotatedHelloWorldAction {
 	
@@ -32,7 +33,7 @@ public class AnnotatedHelloWorldAction {
 	 * invoked, but this is the default.
 	 *  
 	 */
-	
+
     public String execute()  {
     	
     	/* Build the custom greeting from the base greeting text

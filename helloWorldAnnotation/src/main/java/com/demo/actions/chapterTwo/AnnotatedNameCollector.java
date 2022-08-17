@@ -1,5 +1,6 @@
 package com.demo.actions.chapterTwo;
 
+import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -13,9 +14,8 @@ import com.opensymphony.xwork2.ActionSupport;
  * defined in this case.   
  */
 
-
-@Result(name="SUCCESS", location="/chapterTwo/AnnotatedNameCollector.jsp")
-
+@Namespace("/chapterTwo")
+@Result(location="AnnotatedNameCollector.jsp")
 public class AnnotatedNameCollector extends ActionSupport {
 	
 

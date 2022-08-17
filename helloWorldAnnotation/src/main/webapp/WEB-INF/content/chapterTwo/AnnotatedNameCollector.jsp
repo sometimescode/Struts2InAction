@@ -8,8 +8,9 @@
 
 	<body>
 	    <hr>
-		<h4>Enter your name so that we can customize a greeting just for you!</h4> 	
-		<s:form action="annotatedHelloWorld">
+		<h4>Enter your name so that we can customize a greeting just for you!</h4> 
+		<!-- [*] Had to modify action name to match the default name that gets made by convention. -->
+		<s:form action="annotated-hello-world">
     	<s:textfield name="name" label="Your name"/>
     	<s:submit/>
 		</s:form>

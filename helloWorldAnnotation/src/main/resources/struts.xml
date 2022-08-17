@@ -27,17 +27,13 @@
 				application.
 		-->
 		<package name="default" namespace="/" extends="struts-default"> 
-            <default-action-ref name="Index" />
-
-            <action name="Index">
-                <result>/index.html</result>
-            </action>
+            <default-action-ref name="Menu" />
 
 			<action name="Menu">
 				<result>/WEB-INF/menu/Menu.jsp</result>
 			</action>
 		</package>	
 		
-    <include file="chapterTwo.xml"/>
+    <!-- <include file="chapterTwo.xml"/> -->
  
 </struts>
