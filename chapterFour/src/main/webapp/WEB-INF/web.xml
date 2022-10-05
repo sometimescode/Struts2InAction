@@ -3,7 +3,7 @@
          xmlns="http://java.sun.com/xml/ns/j2ee" 
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-  <display-name>S2 Chapter 4</display-name>
+  <display-name>[Chapter 4] Adding workflow with interceptor</display-name>
 
   <!-- Declaration of the Struts 2 filter.  Since our entire web application will be a Struts 2
         application, we will not have any other servlets or filters.  Of course, real Struts 2 
