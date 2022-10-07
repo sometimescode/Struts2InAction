@@ -45,7 +45,7 @@ public class JSONResult implements Result {
 				.getWriter();
 
 		/* Retrieve Objects to Serialize to JSON from ValueStack */
-		ValueStack valueStack = invocation.getStack();
+		ValueStack valueStack = invocation.getStack(); 
 		Object jsonModel = valueStack.findValue("jsonModel");
 
 		XStream xstream = new XStream(new JettisonMappedXmlDriver());
@@ -61,7 +61,6 @@ public class JSONResult implements Result {
 
 		/* Write to the response stream */
 		responseStream.println(xstream.toXML(jsonModel));
-
 	}
 
 }

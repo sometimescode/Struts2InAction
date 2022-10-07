@@ -73,7 +73,7 @@
         </action>
         
 		<action name="ForwardToAnotherServlet" class="com.demo.chapterEight.ForwardToAnotherServlet">
-			<result>/WEB-INF/anotherServlet</result>
+			<result>/anotherServlet</result>
     </action>
  
          <action name="ErrorProne" class="com.demo.chapterEight.ErrorProne" >

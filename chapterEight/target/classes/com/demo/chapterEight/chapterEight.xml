@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+	 <!-- 
+		This package contains the non-secure portions of the Struts 2 Portfolio.  This allows these
+		public actions to share inheritance of things specialized to the non-secure portions of the application.
+	 -->
+		
+    <package name="chapterEightPublic" namespace="/chapterEight" extends="struts-default">
+ 				
+ 		<result-types>
+ 		   <result-type name="customJSON" class="com.demo.chapterEight.JSONResult" />
+  	</result-types>		
+ 		
+ 		<global-results>
+  		  <result name="error">/WEB-INF/chapterEight/Error.jsp</result>
+  	</global-results>
+  		
+    <global-exception-mappings>
+       <exception-mapping exception="java.lang.Exception" result="error"/>
+    </global-exception-mappings>
+
+		<action name="PortfolioHomePage" class="com.demo.chapterEight.PortfolioHomePage">
+       <result>/WEB-INF/chapterEight/PortfolioHomePage.jsp</result>
+		</action>	
+		
+		<action name="ArtistHomePage" class="com.demo.chapterEight.PortfolioHomePage">
+       <result>/WEB-INF/chapterEight/ArtistHomePage.jsp</result>
+		</action>	
+
+		<action name="VisitorHomePage" class="com.demo.chapterEight.PortfolioHomePage">
+       <result>/WEB-INF/chapterEight/VisitorHomePage.jsp</result>
+		</action>	
+		
+			
+		<action name="ViewPortfolioFM" class="com.demo.chapterEight.ViewPortfolio" >
+			 <result type="freemarker">/WEB-INF/chapterEight/ViewPortfolio.ftl</result>
+    </action>
+    
+    <action name="ViewPortfolioJSP" class="com.demo.chapterEight.ViewPortfolio" >
+			<result>/WEB-INF/chapterEight/ViewPortfolio.jsp</result>
+    </action>
+    		
+    <action name="ViewPortfolioVM" class="com.demo.chapterEight.ViewPortfolio" >
+		   <result type="velocity">/WEB-INF/chapterEight/ViewPortfolio.vm</result> 		
+    </action>
+
+ 		<action name="LoginForm" >
+			<result>/WEB-INF/chapterEight/Login.jsp</result>
+        </action>
+
+		<action name="Login" class="com.demo.chapterEight.Login">
+			<result type="redirectAction">
+			   <param name="actionName">AdminPortfolio</param>
+         <param name="namespace">/chapterEight/secure</param>
+         <param name="param1">hardCodedValue</param>
+         <param name="param2">${testProperty}</param>
+      </result>
+			<result name="input">/WEB-INF/chapterEight/Login.jsp</result>
+    </action>
+ 
+ 		<action name="Registration" >
+			<result>/WEB-INF/chapterEight/Registration.jsp</result>
+        </action>
+
+        <action name="Register" class="com.demo.chapterEight.Register">
+			<result>/WEB-INF/chapterEight/RegistrationSuccess.jsp</result>
+			<result name="input">/WEB-INF/chapterEight/Registration.jsp</result>
+        </action>
+        
+		<action name="ForwardToAnotherServlet" class="com.demo.chapterEight.ForwardToAnotherServlet">
+			<result>/anotherServlet</result>
+    </action>
+ 
+         <action name="ErrorProne" class="com.demo.chapterEight.ErrorProne" >
+        </action>
+        
+        <action name="AjaxUserBrowser" class="com.demo.chapterEight.AjaxUserBrowser">
+           <result>/WEB-INF/chapterEight/ajaxUserBrowser.jsp</result>        
+        </action>    
+         
+        <action name="AjaxRetrieveUser" class="com.demo.chapterEight.RetrieveUser">
+           <result type="customJSON">artist</result>        
+        </action>    
+     </package>
+
+
+		 <!-- 
+		 			This package contains the secure portions of the Struts 2 Portfolio.  This allows these
+		 			secure actions to share inheritance of things specialized to the secure portions of the application.
+		 -->
+		 <package name="chapterEightSecure" namespace="/chapterEight/secure" extends="struts-default">
+				
+				<!-- We need to define the authentication interceptor and configure a new stack, based upon the 
+							builtin default stack.  We will simply add our authentication stack to the top of the default
+							stack and make it the default intercptor reference for the actions in this package.
+				-->
+				<interceptors>
+
+					<interceptor name="authenticationInterceptor" class="com.demo.chapterEight.utils.AuthenticationInterceptor"/>
+
+					<interceptor-stack name="secureStack">
+						<interceptor-ref name="authenticationInterceptor"/>
+						<interceptor-ref name="defaultStack"/>
+					</interceptor-stack>
+						
+			</interceptors>
+				
+				<default-interceptor-ref name="secureStack"/>
+
+				<global-results>
+  				<result name="login" type="redirect">/chapterEight/LoginForm.action</result>
+  			  <result name="error">/WEB-INF/chapterEight/Error.jsp</result>
+  			</global-results>
+  		
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+
+        <action name="AdminPortfolio" >
+					<result>/WEB-INF/chapterEight/AdminPortfolio.jsp</result>
+        </action>
+        
+        <action name="UpdateAccountForm" class="com.demo.chapterEight.UpdateAccountForm">
+			<result>/WEB-INF/chapterEight/UpdateAccountForm.jsp</result>
+        </action>
+        
+        <action name="UpdateAccount" class="com.demo.chapterEight.UpdateAccount">
+			<result>/WEB-INF/chapterEight/UpdateAccountSuccess.jsp</result>
+			<result name="input">/WEB-INF/chapterEight/UpdateAccountForm.jsp</result>
+        </action>
+ 
+        
+        <action name="AddImage" >
+          <result>/WEB-INF/chapterEight/ImageUploadForm.jsp</result>
+        </action>
+        
+        <action name="ImageUpload" class="com.demo.chapterEight.ImageUpload" >
+          <param name="fileSystemPath">./portfolioFS/</param>
+        	<result>/WEB-INF/chapterEight/ImageAdded.jsp</result>
+					<result name="input">/WEB-INF/chapterEight/ImageUploadForm.jsp</result>
+        </action>
+        
+        <action name="RemoveImage" >
+					<result>/WEB-INF/chapterEight/ImageRemoved.jsp</result>
+        </action>
+        
+     </package>
+     
+</struts>

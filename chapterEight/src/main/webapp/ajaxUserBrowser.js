@@ -58,15 +58,17 @@ function toFinalConsole(jsonObject){
     console.appendChild(div);
     
     //mess of Javascript references because we didn't mediate the JSON interpretation of our maps, etc.
-    var portfolios = jsonObject.artist.portfolios.entry;
-    var portfolioCount = portfolios.length;
-    for ( var index = 0;  index < portfolioCount; index++ ) {
-    	 var portfolio = portfolios[index];
-       txt=document.createTextNode("Portfolio Name: " + portfolio['string']  );
-       div = document.createElement("p");
-       div.appendChild ( txt );
-       console.appendChild(div);
-    }
+	if(jsonObject.artist.portfolios.length == 1) {
+		var portfolios = jsonObject.artist.portfolios[0];
+		var portfolioCount = portfolios.entry.length;
+		for ( var index = 0;  index < portfolioCount; index++ ) {
+			 var portfolio = portfolios.entry[index];
+		   txt=document.createTextNode("Portfolio Name: " + portfolio['string']  );
+		   div = document.createElement("p");
+		   div.appendChild ( txt );
+		   console.appendChild(div);
+		}
+	}
   }
 }
 
