@@ -33,17 +33,8 @@ In struts.xml added:
 in order for the redirect to work and not return an error.
 https://stackoverflow.com/questions/5295491/how-to-use-servlet-in-struts2
 
-Issues with:
-Velocity Display (Skip for now)
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.5</version>
-            <type>pom</type>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-engine-core</artifactId>
-            <version>2.0</version>
-        </dependency>
+Run into error messages when testing out functionality in:
+8.3.1 VelocityResult, a.k.a. velocity (page 253/434 of pdf)
+Referred to https://mvnrepository.com/artifact/org.apache.struts/struts2-plugins
+And looked for the struts version that I used. Then I looked for velocity and the versions
+used under the Versions column. Then copied the dependencies into pom.xml.

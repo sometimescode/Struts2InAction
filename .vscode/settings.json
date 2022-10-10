@@ -1,9 +1,10 @@
 {
     "java.configuration.updateBuildConfiguration": "interactive",
-    "maven.terminal.customEnv": [
-        {
-            "environmentVariable": "JAVA_HOME",
-            "value": "C:\\Program Files\\Amazon Corretto\\jdk11.0.14_10"
-        }
-    ],
+    //this is needed for helloWorldAnnotation to run
+    // "maven.terminal.customEnv": [
+    //     {
+    //         "environmentVariable": "JAVA_HOME",
+    //         "value": "C:\\Program Files\\Amazon Corretto\\jdk11.0.14_10"
+    //     }
+    // ],
 }
