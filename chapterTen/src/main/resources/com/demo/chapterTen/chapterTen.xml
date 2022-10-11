@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+	 <!-- 
+		This package contains the non-secure portions of the Struts 2 Portfolio.  This allows these
+		public actions to share inheritance of things specialized to the non-secure portions of the application.
+	 -->
+		
+    <package name="chapterTenPublic" namespace="/chapterTen" extends="struts-default">
+ 		
+ 		<global-results>
+  		  <result name="error">/WEB-INF/chapterTen/Error.jsp</result>
+  	</global-results>
+  		
+    <global-exception-mappings>
+       <exception-mapping exception="java.lang.Exception" result="error"/>
+    </global-exception-mappings>
+	
+	<action name="PortfolioHomePage" class="com.demo.chapterTen.PortfolioHomePage">
+		<result>/WEB-INF/chapterTen/PortfolioHomePage.jsp</result>
+		 </action>	
+		 
+		<action name="ArtistHomePage" class="com.demo.chapterTen.PortfolioHomePage">
+       <result>/WEB-INF/chapterTen/ArtistHomePage.jsp</result>
+		</action>	
+
+		<action name="VisitorHomePage" class="com.demo.chapterTen.PortfolioHomePage">
+       <result>/WEB-INF/chapterTen/VisitorHomePage.jsp</result>
+		</action>	
+	
+    <action name="ViewPortfolioJSP" class="com.demo.chapterTen.ViewPortfolio" >
+			<result>/WEB-INF/chapterTen/ViewPortfolio.jsp</result>
+    </action>
+  
+ 		<action name="LoginForm" >
+			<result>/WEB-INF/chapterTen/Login.jsp</result>
+    </action>
+
+		<action name="Login" class="com.demo.chapterTen.Login">
+			<result type="redirectAction">
+			   <param name="actionName">AdminPortfolio</param>
+         <param name="namespace">/chapterTen/secure</param>
+      </result>
+			<result name="input">/WEB-INF/chapterTen/Login.jsp</result>
+    </action>
+ 
+   <action name="Registration" >
+      <result>/WEB-INF/chapterTen/Registration.jsp</result>
+   </action>
+
+   <action name="Register" class="com.demo.chapterTen.Register">
+      <result>/WEB-INF/chapterTen/RegistrationSuccess.jsp</result>
+      <result name="input">/WEB-INF/chapterTen/Registration.jsp</result>
+   </action>
+        
+</package>
+
+
+		 <!-- 
+		 			This package contains the secure portions of the Struts 2 Portfolio.  This allows these
+		 			secure actions to share inheritance of things specialized to the secure portions of the application.
+		 -->
+		 <package name="chapterTenSecure" namespace="/chapterTen/secure" extends="struts-default">
+				
+				<!-- We need to define the authentication interceptor and configure a new stack, based upon the 
+							builtin default stack.  We will simply add our authentication stack to the top of the default
+							stack and make it the default intercptor reference for the actions in this package.
+				-->
+				<interceptors>
+
+					<interceptor name="authenticationInterceptor" class="com.demo.chapterTen.utils.AuthenticationInterceptor"/>
+
+					<interceptor-stack name="secureStack">
+						<interceptor-ref name="authenticationInterceptor"/>
+						<interceptor-ref name="defaultStack"/>
+					</interceptor-stack>
+						
+			</interceptors>
+				
+				<default-interceptor-ref name="secureStack"/>
+
+				<global-results>
+  				<result name="login" type="redirect">/chapterTen/LoginForm.action</result>
+  			  <result name="error">/WEB-INF/chapterTen/Error.jsp</result>
+  			</global-results>
+  		
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+
+      	<action name="AdminPortfolio" class="com.demo.chapterTen.UpdateAccountForm">
+			     <result>/WEB-INF/chapterTen/AdminPortfolio.jsp</result>
+		    </action>
+		    
+		    <action name="CreatePortfolioForm">
+			     <result>/WEB-INF/chapterTen/CreatePortfolio.jsp</result>
+		    </action>
+		
+		    <action name="CreatePortfolio" class="com.demo.chapterTen.CreatePortfolio">
+		       <result name="input">/WEB-INF/chapterTen/CreatePortfolio.jsp</result>
+			     <result>/WEB-INF/chapterTen/PortfolioAdded.jsp</result>
+		    </action>
+		    
+		    <action name="UpdatePortfolio" class="com.demo.chapterTen.UpdatePortfolio">
+			      <result>/WEB-INF/chapterTen/UpdatePortfolioSuccess.jsp</result>
+			      <interceptor-ref name="paramsPrepareParamsStack"/>
+		    </action>
+			    		
+	   	 <action name="EditPortfolio" class="com.demo.chapterTen.EditPortfolio">
+			   <result>/WEB-INF/chapterTen/EditPortfolio.jsp</result>
+		   </action>
+         
+        <action name="UpdateAccountForm" class="com.demo.chapterTen.UpdateAccountForm">
+			<result>/WEB-INF/chapterTen/UpdateAccountForm.jsp</result>
+        </action>
+        
+        <action name="UpdateAccount" class="com.demo.chapterTen.UpdateAccount">
+			<result>/WEB-INF/chapterTen/UpdateAccountSuccess.jsp</result>
+			<result name="input">/WEB-INF/chapterTen/UpdateAccountForm.jsp</result>
+        </action>
+ 
+      <action name="AddImage" >
+          <result>/WEB-INF/chapterTen/ImageUploadForm.jsp</result>
+        </action>
+        
+        <action name="ImageUpload" class="com.demo.chapterTen.ImageUpload" >
+        	<result>/WEB-INF/chapterTen/ImageAdded.jsp</result>
+					<result name="input">/WEB-INF/chapterTen/ImageUploadForm.jsp</result>
+        </action>
+        
+     </package>
+     
+</struts>
