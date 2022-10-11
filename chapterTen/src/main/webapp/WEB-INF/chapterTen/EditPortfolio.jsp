@@ -16,7 +16,7 @@
 		</s:form>	
 		<hr/>
 		<ul>
-		<s:url action='AddImage' id="addImage">
+		<s:url action='AddImage' var="addImage">
 		   <s:param name="id" value="%{portfolio.id}"/> 
 		</s:url>
 		   <li><a href="<s:property value='addImage'/>">Add image to portfolio.</a></li>	
